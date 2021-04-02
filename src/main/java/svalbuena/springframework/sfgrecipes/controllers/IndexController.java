@@ -1,31 +1,21 @@
 package svalbuena.springframework.sfgrecipes.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import svalbuena.springframework.sfgrecipes.domain.Category;
-import svalbuena.springframework.sfgrecipes.domain.UnitOfMeasure;
-import svalbuena.springframework.sfgrecipes.repositories.CategoryRepository;
-import svalbuena.springframework.sfgrecipes.repositories.UnitOfMeasureRepository;
-
-import java.util.Optional;
+import svalbuena.springframework.sfgrecipes.services.RecipeService;
 
 @Controller
 public class IndexController {
-    private CategoryRepository categoryRepository;
-    private UnitOfMeasureRepository unitOfMeasureRepository;
+    private final RecipeService recipeService;
 
-    public IndexController(final CategoryRepository categoryRepository, final UnitOfMeasureRepository unitOfMeasureRepository) {
-        this.categoryRepository = categoryRepository;
-        this.unitOfMeasureRepository = unitOfMeasureRepository;
+    public IndexController(final RecipeService recipeService) {
+        this.recipeService = recipeService;
     }
 
     @GetMapping({"", "/"})
-    public String getIndexPage() {
-        final Optional<Category> category = categoryRepository.findByDescription("American");
-        final Optional<UnitOfMeasure> unitOfMeasure = unitOfMeasureRepository.findByDescription("Grams");
-        System.out.println("Category = " + category.get().getId());
-        System.out.println("UOM = " + unitOfMeasure.get().getId());
-
+    public String getIndexPage(final Model model) {
+        model.addAttribute("recipes", recipeService.getAllRecipes());
         return "index";
     }
 }

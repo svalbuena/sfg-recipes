@@ -63,4 +63,9 @@ public class Ingredient {
     public void setUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
         this.unitOfMeasure = unitOfMeasure;
     }
+
+    @Override
+    public String toString() {
+        return description + ", " + amount.toString() + " " + unitOfMeasure.toString();
+    }
 }

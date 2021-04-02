@@ -6,5 +6,53 @@
 </head>
 <body>
     <h1>Recipes</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Servings</th>
+                <th>Categories</th>
+                <th>Difficulty</th>
+                <th>Preparation Time</th>
+                <th>Cook Time</th>
+                <th>Ingredients</th>
+                <th>Directions</th>
+                <th>Image</th>
+                <th>Notes</th>
+                <th>Source</th>
+                <th>Url</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="recipe : ${recipes}">
+                <td th:text="${recipe.id}"></td>
+                <td th:text="${recipe.description}"></td>
+                <td th:text="${recipe.servings}"></td>
+                <td>
+                    <ul>
+                        <li th:each="category : ${recipe.categories}">
+                            <p th:text="${category}"></p>
+                        </li>
+                    </ul>
+                </td>
+                <td th:text="${recipe.difficulty}"></td>
+                <td th:text="${recipe.preparationTime}"></td>
+                <td th:text="${recipe.cookTime}"></td>
+                <td>
+                    <ul>
+                        <li th:each="ingredient : ${recipe.ingredients}">
+                            <p th:text="${ingredient}"></p>
+                        </li>
+                    </ul>
+                </td>
+                <td th:text="${recipe.directions}"></td>
+                <td th:text="${recipe.source}"></td>
+                <td th:text="${recipe.notes}"></td>
+                <td th:text="${recipe.source}"></td>
+                <td><a th:href="${recipe.url}" th:text="${recipe.url}"></a></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
