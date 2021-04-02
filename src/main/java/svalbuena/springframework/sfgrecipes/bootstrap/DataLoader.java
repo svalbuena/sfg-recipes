@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -137,11 +136,13 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private Category createCategory(final String description) {
-        final Optional<Category> category = categoryRepository.findByDescription(description);
-        if (category.isEmpty()) {
-            throw new RuntimeException("No Category found on the Database for {" + description + "}");
-        }
-        return category.get();
+        return categoryRepository.findByDescription(description)
+                .orElseThrow(() -> new RuntimeException("No Category found on the Database for {" + description + "}"));
+    }
+
+    private UnitOfMeasure createUnitOfMeasure(final String description) {
+        return unitOfMeasureRepository.findByDescription(description)
+                .orElseThrow(() -> new RuntimeException("No Unit of Measure found on the Database for {" + description + "}"));
     }
 
     private Ingredient createIngredient(final Recipe recipe,
@@ -152,11 +153,7 @@ public class DataLoader implements CommandLineRunner {
         ingredient.setRecipe(recipe);
         ingredient.setDescription(ingredientDescription);
         ingredient.setAmount(BigDecimal.valueOf(amount));
-        final Optional<UnitOfMeasure> unitOfMeasure = unitOfMeasureRepository.findByDescription(unitOfMeasureDescription);
-        if (unitOfMeasure.isEmpty()) {
-            throw new RuntimeException("No Unit of Measure found on the Database for {" + unitOfMeasureDescription + "}");
-        }
-        ingredient.setUnitOfMeasure(unitOfMeasure.get());
+        ingredient.setUnitOfMeasure(createUnitOfMeasure(unitOfMeasureDescription));
         return ingredient;
     }
 
