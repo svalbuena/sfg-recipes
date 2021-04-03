@@ -1,5 +1,9 @@
 package svalbuena.springframework.sfgrecipes.domain;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
+@NoArgsConstructor
+@Setter
+@Getter
 @Entity
 public class Notes {
     @Id
@@ -19,38 +26,7 @@ public class Notes {
     @Lob
     private String notes;
 
-    public Notes() {}
-
     public Notes(final String notes) {
         this.notes = notes;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    @Override
-    public String toString() {
-        return notes;
     }
 }

@@ -1,5 +1,9 @@
 package svalbuena.springframework.sfgrecipes.domain;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -8,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 
+@NoArgsConstructor
+@Setter
+@Getter
 @Entity
 public class Ingredient {
     @Id
@@ -24,56 +31,9 @@ public class Ingredient {
     @ManyToOne(fetch = FetchType.EAGER)
     private UnitOfMeasure unitOfMeasure;
 
-    public Ingredient() {}
-
     public Ingredient(final String description, final BigDecimal amount, final UnitOfMeasure unitOfMeasure) {
         this.description = description;
         this.amount = amount;
         this.unitOfMeasure = unitOfMeasure;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public UnitOfMeasure getUnitOfMeasure() {
-        return unitOfMeasure;
-    }
-
-    public void setUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
-        this.unitOfMeasure = unitOfMeasure;
-    }
-
-    @Override
-    public String toString() {
-        return description + ", " + amount.toString() + " " + unitOfMeasure.toString();
     }
 }
