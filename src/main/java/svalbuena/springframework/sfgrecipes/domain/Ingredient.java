@@ -3,6 +3,7 @@ package svalbuena.springframework.sfgrecipes.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +16,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode(exclude = "recipe")
+@ToString(exclude = "recipe")
 @Entity
 public class Ingredient {
     @Id

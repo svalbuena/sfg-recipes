@@ -32,7 +32,7 @@
                 <td>
                     <ul>
                         <li th:each="category : ${recipe.categories}">
-                            <p th:text="${category}"></p>
+                            <p th:text="${category.description}"></p>
                         </li>
                     </ul>
                 </td>
@@ -42,13 +42,13 @@
                 <td>
                     <ul>
                         <li th:each="ingredient : ${recipe.ingredients}">
-                            <p th:text="${ingredient}"></p>
+                            <p th:text="${ingredient.description + ', ' + ingredient.amount + ' ' + ingredient.unitOfMeasure.description}"></p>
                         </li>
                     </ul>
                 </td>
                 <td th:text="${recipe.directions}"></td>
                 <td th:text="${recipe.source}"></td>
-                <td th:text="${recipe.notes}"></td>
+                <td th:text="${recipe.notes.notes}"></td>
                 <td th:text="${recipe.source}"></td>
                 <td><a th:href="${recipe.url}" th:text="${recipe.url}"></a></td>
             </tr>
