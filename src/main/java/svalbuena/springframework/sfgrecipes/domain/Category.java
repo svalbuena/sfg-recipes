@@ -42,6 +42,11 @@ public class Category {
         this.recipes = recipes;
     }
 
+    public Category addRecipe(final Recipe recipe) {
+        recipes.add(recipe);
+        return this;
+    }
+
     @Override
     public String toString() {
         return description;

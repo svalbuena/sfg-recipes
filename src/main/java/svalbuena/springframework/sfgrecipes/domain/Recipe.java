@@ -122,6 +122,12 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+    public Recipe addIngredient(final Ingredient ingredient) {
+        ingredient.setRecipe(this);
+        this.ingredients.add(ingredient);
+        return this;
+    }
+
     public Byte[] getImage() {
         return image;
     }
@@ -134,7 +140,8 @@ public class Recipe {
         return notes;
     }
 
-    public void setNotes(Notes notes) {
+    public void setNotes(final Notes notes) {
+        notes.setRecipe(this);
         this.notes = notes;
     }
 
@@ -144,5 +151,11 @@ public class Recipe {
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
+    }
+
+    public Recipe addCategory(final Category category) {
+        category.addRecipe(this);
+        categories.add(category);
+        return this;
     }
 }

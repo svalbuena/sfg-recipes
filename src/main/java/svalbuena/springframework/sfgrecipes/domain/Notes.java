@@ -19,6 +19,12 @@ public class Notes {
     @Lob
     private String notes;
 
+    public Notes() {}
+
+    public Notes(final String notes) {
+        this.notes = notes;
+    }
+
     public Long getId() {
         return id;
     }
