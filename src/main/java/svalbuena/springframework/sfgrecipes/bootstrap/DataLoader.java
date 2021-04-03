@@ -1,5 +1,6 @@
 package svalbuena.springframework.sfgrecipes.bootstrap;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import svalbuena.springframework.sfgrecipes.domain.Category;
@@ -12,6 +13,7 @@ import svalbuena.springframework.sfgrecipes.repositories.CategoryRepository;
 import svalbuena.springframework.sfgrecipes.repositories.RecipeRepository;
 import svalbuena.springframework.sfgrecipes.repositories.UnitOfMeasureRepository;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 @Component
 public class DataLoader implements CommandLineRunner {
     private final RecipeRepository recipeRepository;
@@ -33,9 +36,11 @@ public class DataLoader implements CommandLineRunner {
         this.unitOfMeasureRepository = unitOfMeasureRepository;
     }
 
+    @Transactional
     @Override
     public void run(final String... args) {
         loadData();
+        log.info("Data loaded!");
     }
 
     private void loadData() {

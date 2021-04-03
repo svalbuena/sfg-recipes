@@ -1,8 +1,8 @@
 package svalbuena.springframework.sfgrecipes.domain;
 
-import lombok.Getter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +12,8 @@ import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
 @NoArgsConstructor
-@Setter
-@Getter
+@Data
+@EqualsAndHashCode(exclude = "recipe")
 @Entity
 public class Notes {
     @Id

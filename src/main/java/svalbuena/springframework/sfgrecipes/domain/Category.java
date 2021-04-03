@@ -1,7 +1,7 @@
 package svalbuena.springframework.sfgrecipes.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,8 +11,8 @@ import javax.persistence.ManyToMany;
 import java.util.HashSet;
 import java.util.Set;
 
-@Setter
-@Getter
+@Data
+@EqualsAndHashCode(exclude = "recipes")
 @Entity
 public class Category {
     @Id
@@ -23,4 +23,9 @@ public class Category {
 
     @ManyToMany(mappedBy = "categories")
     private Set<Recipe> recipes = new HashSet<>();
+
+    public Category addRecipe(final Recipe recipe) {
+        recipes.add(recipe);
+        return this;
+    }
 }
