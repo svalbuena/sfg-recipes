@@ -1,7 +1,9 @@
 package svalbuena.springframework.sfgrecipes.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Entity;
@@ -12,6 +14,8 @@ import javax.persistence.ManyToMany;
 import java.util.HashSet;
 import java.util.Set;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @EqualsAndHashCode(exclude = "recipes")
 @ToString(exclude = "recipes")
@@ -29,5 +33,9 @@ public class Category {
     public Category addRecipe(final Recipe recipe) {
         recipes.add(recipe);
         return this;
+    }
+
+    public Category(final String description) {
+        this.description = description;
     }
 }

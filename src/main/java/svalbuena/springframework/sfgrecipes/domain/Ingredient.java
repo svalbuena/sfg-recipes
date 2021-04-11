@@ -1,5 +1,6 @@
 package svalbuena.springframework.sfgrecipes.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 
+@AllArgsConstructor
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode(exclude = "recipe")

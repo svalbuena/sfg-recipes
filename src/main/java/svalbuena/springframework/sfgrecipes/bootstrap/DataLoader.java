@@ -51,15 +51,43 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private Recipe createGuacamole() {
-        final Recipe guacamole = new Recipe();
-        guacamole.setDescription("Perfect Guacamole");
-        guacamole.setServings(4);
+        final String description = "Perfect Guacamole";
+        final int servings = 4;
+        final int preparationTime = 10;
+        final int cookTime = 0;
+        final String source = "Simply Recipes";
+        final String url = "https://www.simplyrecipes.com/recipes/perfect_guacamole/";
+        final String directions =
+                "1 - Cut the avocado, remove flesh:\n" +
+                "Cut the avocados in half. Remove the pit. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon. (See How to Cut and Peel an Avocado.) Place in a bowl.\n" +
+                "\n" +
+                "2 - Mash with a fork:\n" +
+                "Using a fork, roughly mash the avocado. (Don't overdo it! The guacamole should be a little chunky.)\n" +
+                "\n" +
+                "3 - Add salt, lime juice, and the rest:\n" +
+                "Sprinkle with salt and lime (or lemon) juice. The acid in the lime juice will provide some balance to the richness of the avocado and will help delay the avocados from turning brown.\n" +
+                "Add the chopped onion, cilantro, black pepper, and chiles. Chili peppers vary individually in their hotness. So, start with a half of one chili pepper and add to the guacamole to your desired degree of hotness.\n" +
+                "Remember that much of this is done to taste because of the variability in the fresh ingredients. Start with this recipe and adjust to your taste.\n" +
+                "Chilling tomatoes hurts their flavor, so if you want to add chopped tomato to your guacamole, add it just before serving.\n" +
+                "\n" +
+                "4 - Serve:\n" +
+                "Serve immediately, or if making a few hours ahead, place plastic wrap on the surface of the guacamole and press down to cover it and to prevent air reaching it. (The oxygen in the air causes oxidation which will turn the guacamole brown.) Refrigerate until ready to serve.";
+
+        final Recipe guacamole = new Recipe(
+                description,
+                preparationTime,
+                cookTime,
+                servings,
+                source,
+                url,
+                directions,
+                Difficulty.EASY,
+                createImage("guacamole.webp"),
+                createNotes("Be careful handling chiles if using. Wash your hands thoroughly after handling and do not touch your eyes or the area near your eyes with your hands for several hours.")
+        );
         guacamole
                 .addCategory(createCategory("Mexican"))
                 .addCategory(createCategory("American"));
-        guacamole.setDifficulty(Difficulty.EASY);
-        guacamole.setPreparationTime(10);
-        guacamole.setCookTime(0);
         guacamole
                 .addIngredient(createIngredient("ripe avocado", 2, "piece"))
                 .addIngredient(createIngredient("salt", 0.25, "teaspoon"))
@@ -69,38 +97,48 @@ public class DataLoader implements CommandLineRunner {
                 .addIngredient(createIngredient("freshly grated black pepper", 1, "dash"))
                 .addIngredient(createIngredient("red radishes or jicama, to garnish", 1, "bunch"))
                 .addIngredient(createIngredient("tortilla chips, to serve", 1, "bunch"));
-        guacamole.setDirections(
-                        "1 - Cut the avocado, remove flesh:\n" +
-                        "Cut the avocados in half. Remove the pit. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon. (See How to Cut and Peel an Avocado.) Place in a bowl.\n" +
-                        "\n" +
-                        "2 - Mash with a fork:\n" +
-                        "Using a fork, roughly mash the avocado. (Don't overdo it! The guacamole should be a little chunky.)\n" +
-                        "\n" +
-                        "3 - Add salt, lime juice, and the rest:\n" +
-                        "Sprinkle with salt and lime (or lemon) juice. The acid in the lime juice will provide some balance to the richness of the avocado and will help delay the avocados from turning brown.\n" +
-                        "Add the chopped onion, cilantro, black pepper, and chiles. Chili peppers vary individually in their hotness. So, start with a half of one chili pepper and add to the guacamole to your desired degree of hotness.\n" +
-                        "Remember that much of this is done to taste because of the variability in the fresh ingredients. Start with this recipe and adjust to your taste.\n" +
-                        "Chilling tomatoes hurts their flavor, so if you want to add chopped tomato to your guacamole, add it just before serving.\n" +
-                        "\n" +
-                        "4 - Serve:\n" +
-                        "Serve immediately, or if making a few hours ahead, place plastic wrap on the surface of the guacamole and press down to cover it and to prevent air reaching it. (The oxygen in the air causes oxidation which will turn the guacamole brown.) Refrigerate until ready to serve.");
-        guacamole.setImage(createImage("guacamole.webp"));
-        guacamole.setNotes(new Notes("Be careful handling chiles if using. Wash your hands thoroughly after handling and do not touch your eyes or the area near your eyes with your hands for several hours."));
-        guacamole.setSource("Simply Recipes");
-        guacamole.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/");
         return guacamole;
     }
 
     private Recipe createTacos() {
-        final Recipe tacos = new Recipe();
-        tacos.setDescription("Spicy Grilled Chicken Tacos");
-        tacos.setServings(6);
+        final String description = "Spicy Grilled Chicken Tacos";
+        final int servings = 6;
+        final int preparationTime = 20;
+        final int cookTime = 15;
+        final String source = "Simply Recipes";
+        final String url = "https://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/";
+        final String directions =
+                "1 - Prepare a gas or charcoal grill for medium-high, direct heat\n" +
+                "\n" +
+                "2 - Make the marinade and coat the chicken:\n" +
+                "In a large bowl, stir together the chili powder, oregano, cumin, sugar, salt, garlic and orange zest. Stir in the orange juice and olive oil to make a loose paste. Add the chicken to the bowl and toss to coat all over.\n" +
+                "Set aside to marinate while the grill heats and you prepare the rest of the toppings.\n" +
+                "\n" +
+                "3 - Grill the chicken:\n" +
+                "Grill the chicken for 3 to 4 minutes per side, or until a thermometer inserted into the thickest part of the meat registers 165F. Transfer to a plate and rest for 5 minutes.\n" +
+                "\n" +
+                "4 - Warm the tortillas:\n" +
+                "Place each tortilla on the grill or on a hot, dry skillet over medium-high heat. As soon as you see pockets of the air start to puff up in the tortilla, turn it with tongs and heat for a few seconds on the other side.\n" +
+                "Wrap warmed tortillas in a tea towel to keep them warm until serving.\n" +
+                "\n" +
+                "5 - Assemble the tacos:\n" +
+                "Slice the chicken into strips. On each tortilla, place a small handful of arugula. Top with chicken slices, sliced avocado, radishes, tomatoes, and onion slices. Drizzle with the thinned sour cream. Serve with lime wedges.";
+
+        final Recipe tacos = new Recipe(
+                description,
+                preparationTime,
+                cookTime,
+                servings,
+                source,
+                url,
+                directions,
+                Difficulty.MODERATE,
+                createImage("tacos.webp"),
+                createNotes("Look for ancho chile powder with the Mexican ingredients at your grocery store, on buy it online. (If you can't find ancho chili powder, you replace the ancho chili, the oregano, and the cumin with 2 1/2 tablespoons regular chili powder, though the flavor won't be quite the same.)")
+        );
         tacos
                 .addCategory(createCategory("Mexican"))
                 .addCategory(createCategory("American"));
-        tacos.setDifficulty(Difficulty.MODERATE);
-        tacos.setPreparationTime(20);
-        tacos.setCookTime(15);
         tacos
                 .addIngredient(createIngredient("ancho chili powder", 2, "tablespoon"))
                 .addIngredient(createIngredient("dried oregano", 1, "teaspoon"))
@@ -121,26 +159,6 @@ public class DataLoader implements CommandLineRunner {
                 .addIngredient(createIngredient("roughly chopped cilantro", 1, "bunch"))
                 .addIngredient(createIngredient("cup sour cream", 0.5, "cup"))
                 .addIngredient(createIngredient("lime, cut into wedges", 1, "piece"));
-        tacos.setDirections(
-                        "1 - Prepare a gas or charcoal grill for medium-high, direct heat\n" +
-                        "\n" +
-                        "2 - Make the marinade and coat the chicken:\n" +
-                        "In a large bowl, stir together the chili powder, oregano, cumin, sugar, salt, garlic and orange zest. Stir in the orange juice and olive oil to make a loose paste. Add the chicken to the bowl and toss to coat all over.\n" +
-                        "Set aside to marinate while the grill heats and you prepare the rest of the toppings.\n" +
-                        "\n" +
-                        "3 - Grill the chicken:\n" +
-                        "Grill the chicken for 3 to 4 minutes per side, or until a thermometer inserted into the thickest part of the meat registers 165F. Transfer to a plate and rest for 5 minutes.\n" +
-                        "\n" +
-                        "4 - Warm the tortillas:\n" +
-                        "Place each tortilla on the grill or on a hot, dry skillet over medium-high heat. As soon as you see pockets of the air start to puff up in the tortilla, turn it with tongs and heat for a few seconds on the other side.\n" +
-                        "Wrap warmed tortillas in a tea towel to keep them warm until serving.\n" +
-                        "\n" +
-                        "5 - Assemble the tacos:\n" +
-                        "Slice the chicken into strips. On each tortilla, place a small handful of arugula. Top with chicken slices, sliced avocado, radishes, tomatoes, and onion slices. Drizzle with the thinned sour cream. Serve with lime wedges. ");
-        tacos.setImage(createImage("tacos.webp"));
-        tacos.setNotes(new Notes("Look for ancho chile powder with the Mexican ingredients at your grocery store, on buy it online. (If you can't find ancho chili powder, you replace the ancho chili, the oregano, and the cumin with 2 1/2 tablespoons regular chili powder, though the flavor won't be quite the same.) "));
-        tacos.setSource("Simply Recipes");
-        tacos.setUrl("https://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
         return tacos;
     }
 
@@ -158,6 +176,10 @@ public class DataLoader implements CommandLineRunner {
                                         final double amount,
                                         final String unitOfMeasure) {
         return new Ingredient(description, BigDecimal.valueOf(amount), createUnitOfMeasure(unitOfMeasure));
+    }
+
+    private Notes createNotes(final String description) {
+        return new Notes(description);
     }
 
     private Byte[] createImage(final String imageFilename) {

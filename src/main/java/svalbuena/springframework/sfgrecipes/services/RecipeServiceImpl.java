@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import svalbuena.springframework.sfgrecipes.domain.Recipe;
 import svalbuena.springframework.sfgrecipes.repositories.RecipeRepository;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -13,6 +14,11 @@ import java.util.stream.StreamSupport;
 @Service
 public class RecipeServiceImpl implements RecipeService {
     private final RecipeRepository recipeRepository;
+
+    @Override
+    public Optional<Recipe> getById(final Long id) {
+        return recipeRepository.findById(id);
+    }
 
     @Override
     public Set<Recipe> getAllRecipes() {

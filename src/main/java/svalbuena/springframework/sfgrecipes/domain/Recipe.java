@@ -1,11 +1,15 @@
 package svalbuena.springframework.sfgrecipes.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity
 public class Recipe {
@@ -44,6 +48,28 @@ public class Recipe {
     @ManyToMany
     @JoinTable(name = "recipe_category", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
+
+    public Recipe(final String description,
+                  final Integer preparationTime,
+                  final Integer cookTime,
+                  final Integer servings,
+                  final String source,
+                  final String url,
+                  final String directions,
+                  final Difficulty difficulty,
+                  final Byte[] image,
+                  final Notes notes) {
+        this.description = description;
+        this.preparationTime = preparationTime;
+        this.cookTime = cookTime;
+        this.servings = servings;
+        this.source = source;
+        this.url = url;
+        this.directions = directions;
+        this.difficulty = difficulty;
+        this.image = image;
+        setNotes(notes);
+    }
 
     public Recipe addIngredient(final Ingredient ingredient) {
         ingredient.setRecipe(this);

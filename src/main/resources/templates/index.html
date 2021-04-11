@@ -1,58 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Recipes</title>
-</head>
+<div th:replace="fragments/head :: head (Recipes)"></div>
 <body>
-    <h1>Recipes</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Description</th>
-                <th>Servings</th>
-                <th>Categories</th>
-                <th>Difficulty</th>
-                <th>Preparation Time</th>
-                <th>Cook Time</th>
-                <th>Ingredients</th>
-                <th>Directions</th>
-                <th>Image</th>
-                <th>Notes</th>
-                <th>Source</th>
-                <th>Url</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="recipe : ${recipes}">
-                <td th:text="${recipe.id}"></td>
-                <td th:text="${recipe.description}"></td>
-                <td th:text="${recipe.servings}"></td>
-                <td>
-                    <ul>
-                        <li th:each="category : ${recipe.categories}">
-                            <p th:text="${category.description}"></p>
-                        </li>
-                    </ul>
-                </td>
-                <td th:text="${recipe.difficulty}"></td>
-                <td th:text="${recipe.preparationTime}"></td>
-                <td th:text="${recipe.cookTime}"></td>
-                <td>
-                    <ul>
-                        <li th:each="ingredient : ${recipe.ingredients}">
-                            <p th:text="${ingredient.description + ', ' + ingredient.amount + ' ' + ingredient.unitOfMeasure.description}"></p>
-                        </li>
-                    </ul>
-                </td>
-                <td th:text="${recipe.directions}"></td>
-                <td th:text="${recipe.source}"></td>
-                <td th:text="${recipe.notes.notes}"></td>
-                <td th:text="${recipe.source}"></td>
-                <td><a th:href="${recipe.url}" th:text="${recipe.url}"></a></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container-fluid" style="margin-top: 20px">
+        <div class="row">
+            <div class="card col-md-6 col-md-offset-3">
+                <div class="card-header">My Recipes!</div>
+                <div class="card-body">
+                    <div class="table-responsive" th:if="${not recipes.isEmpty()}">
+                        <table class="table table-hover">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Description</th>
+                                    <th>View</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="recipe : ${recipes}">
+                                    <td th:text="${recipe.id}"></td>
+                                    <td th:text="${recipe.description}"></td>
+                                    <td><a th:href="${'/recipe/show/' + recipe.id}">View</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/scripts :: scripts"></div>
 </body>
 </html>

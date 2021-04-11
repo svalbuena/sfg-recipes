@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/head :: head (Recipes)"></div>
+<body>
+    <div class="container-fluid" style="margin-top: 20px">
+        <div class="row">
+            <div class="card col-md-6 col-md-offset-3">
+                <div class="card-header">Recipe Description Here!</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">Categories:</div>
+                        <div class="col-md-9">
+                            <ul>
+                                <li th:each="category : ${recipe.categories}" th:text="${category.description}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">Prep Time:</div>
+                        <div class="col-md-3"><p th:text="${recipe.preparationTime}"></p></div>
+                        <div class="col-md-3">Difficulty:</div>
+                        <div class="col-md-3"><p th:text="${recipe.difficulty}"></p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">Cook Time:</div>
+                        <div class="col-md-3"><p th:text="${recipe.cookTime}"></p></div>
+                        <div class="col-md-3">Servings:</div>
+                        <div class="col-md-3"><p th:text="${recipe.servings}"></p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">Source:</div>
+                        <div class="col-md-3"><p th:text="${recipe.source}"></p></div>
+                        <div class="col-md-3">Url:</div>
+                        <div class="col-md-3"><p><a th:href="${recipe.url}" th:text="${recipe.url}"></a></p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card col-md-6 col-md-offset-3">
+                <div class="card-header">Ingredients</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul>
+                                <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient.amount.toPlainString() + ' ' + ingredient.unitOfMeasure.description + ' of ' + ingredient.description}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card col-md-6 col-md-offset-3">
+                <div class="card-header">Directions</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p th:text="${recipe.directions}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card col-md-6 col-md-offset-3">
+                <div class="card-header">Notes</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p th:text="${recipe.notes.notes}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/scripts :: scripts"></div>
+</body>
+</html>
